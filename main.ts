@@ -2,7 +2,7 @@
  * RTC block
  */
 //% weight=100 color=#70c0f0 icon="\uf042" block="RTC"
-namespace rtc {
+namespace RTC {
     const I2C_ADDR = 0x68
     const REG_SECS = 0x00
     const REG_MINS = 0x01
@@ -51,11 +51,6 @@ namespace rtc {
         return [hour, mins, secs]
     }
 
-     /**
-     * set Time
-     */
-    //% blockId="RTC_SET_TIME" block="setTime %u"
-    //% weight=80 blockGap=8
     export function setTime(hour: number, mins: number, secs: number) {
         setRegister(REG_HOUR, bcd.Encode(hour))
         setRegister(REG_MINS, bcd.Encode(mins))
