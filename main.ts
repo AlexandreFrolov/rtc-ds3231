@@ -1,3 +1,7 @@
+/**
+ * RTC block
+ */
+//% weight=100 color=#70c0f0 icon="\uf042" block="RTC"
 namespace rtc {
     const I2C_ADDR = 0x68
     const REG_SECS = 0x00
@@ -35,6 +39,11 @@ namespace rtc {
         pins.i2cWriteBuffer(I2C_ADDR, data)
     }
 
+     /**
+     * get Time
+     */
+    //% blockId="RTC_GET_TIME" block="getTime %u"
+    //% weight=80 blockGap=8
     export function getTime(): number[] {
         let hour = bcd.Decode(getRegister(REG_HOUR))
         let mins = bcd.Decode(getRegister(REG_MINS))
@@ -42,6 +51,11 @@ namespace rtc {
         return [hour, mins, secs]
     }
 
+     /**
+     * set Time
+     */
+    //% blockId="RTC_SET_TIME" block="setTime %u"
+    //% weight=80 blockGap=8
     export function setTime(hour: number, mins: number, secs: number) {
         setRegister(REG_HOUR, bcd.Encode(hour))
         setRegister(REG_MINS, bcd.Encode(mins))
